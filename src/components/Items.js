@@ -1,16 +1,19 @@
-import Display from "./display";
-
-//import { Container, Image, Row, Col } from "react-bootstrap";
+import {Button } from "react-bootstrap";
 const Items = (props) => {
   return (
     <>
-    <section className="container"style={{width:'25%'}}>
+    <section className="container">
     {props.items.map((item)=>(
-        <Display
-        title={item.title}
-        price={item.price}
-        url={item.imageUrl}
-        />
+      <div style={{display: "grid", boxSizing: "border-box"}}>
+        <div>
+        <h3>{item.title}</h3>
+        <img alt={item.title} src={item.imageUrl}/>  
+        </div>
+        <div style={{display: "flex", justifyContent:"space-between"}}>
+        <span>Rs. {item.price} </span> 
+        <Button variant="primary" size="sm" style={{display:"flex"}}>Add to Cart</Button>
+        </div>
+      </div>
 ))}
     </section>
     </>
