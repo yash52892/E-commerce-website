@@ -7,6 +7,11 @@ import Footer from './components/Footer';
 import { Button } from 'react-bootstrap';
 import Cart from './components/Cart';
 import { useState } from 'react';
+import CartProvider from './Store/CartProvide';
+import About from './components/About';
+
+
+
 
 const App=()=>{
   const productsArr = [
@@ -32,19 +37,23 @@ const App=()=>{
     }
     ]
     const [show, setShow] = useState(false);
+    const [about, setAbout]=useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleAbout=()=> setAbout(true);
+  
+
 
   return (
-    <React.Fragment>
-    <Header on={handleShow}/>
-    <Cart product={productsArr} show={show} off={handleClose}/>
+    <CartProvider>
+    <Header on={handleShow} aboutOn={handleAbout}/>
+    <Cart show={show} off={handleClose}/>
     <Sub/>
-    <Items items={productsArr}/>
-    <Button variant="outline-secondary" style={{marginLeft:"725px"}} onClick={handleShow}>See the Cart</Button>
+    { about ? (<About/>): (<Items items={productsArr}/>)}
+    { !about && <Button variant="outline-secondary" style={{marginLeft:"725px"}} onClick={handleShow}>See the Cart</Button> }
     <Footer/>
-    </React.Fragment>
+    </CartProvider>
   );
   
 }
