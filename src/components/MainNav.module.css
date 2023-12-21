@@ -1,0 +1,14 @@
+.meauto{
+    display: flex;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: 150;
+    list-style-type: none;
+    border-bottom: 0.1rem solid white;
+    position: fixed;
+    top: 0%;
+    background: black;
+    width: 100%;
+    z-index: 1;
+    justify-content: space-between;
+}

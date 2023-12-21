@@ -5,12 +5,12 @@ import { useContext } from "react";
 
 const Cart=(props)=>{
     const cart=useContext(CartContext);
-    console.log(cart);
-    const handleClose=()=>{
-        props.off();
+    const cartHideHandler=()=>{
+      console.log("hide")
+      props.onNavHide();
     }
     return(
-        <Modal show={props.show} onHide={handleClose}>
+        <Modal show={props.cartshow} onHide={cartHideHandler}>
         <h2>Cart</h2>
        {cart.items.map((item) => (
         <ListGroup as="ol" numbered>
@@ -28,7 +28,7 @@ const Cart=(props)=>{
         </ListGroup>
         ))}
         <div>
-        <Button variant="secondary" size="sm" onClick={handleClose}>Close</Button>
+        <Button variant="secondary" size="sm" onClick={cartHideHandler}>Close</Button>
         <Button variant="secondary" size="sm">Purchase</Button>
         </div>
         </Modal>

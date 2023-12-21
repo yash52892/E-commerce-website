@@ -1,0 +1,71 @@
+.playbtn{
+    cursor: pointer;
+    display: block;
+    border: 2px solid #56CCF2;
+    border-radius: 50%;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: 200;
+    margin: 20px auto;
+    background: gray;
+    color: #56CCF2;
+}
+.latestalbum{
+    display: block;
+    border: 1px solid #56CCF2;
+    padding: 15px 30px;
+    font-size: 23px;
+    font-weight: 200;
+    margin: 10px auto;
+    background: gray;
+    cursor: pointer;
+    color: white;
+}
+.item{
+    display: flex;
+    border-bottom: 1px solid black;
+    padding: 10px;
+
+}
+.date{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.button{
+    appearance: auto;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    padding-block: 1px;
+    padding-inline: 6px;
+}
+.h2{
+    font-family: "Metal Mania";
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+}
+#tours .item .date {
+    width: 12%;
+}
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    align-items: center;
+}
+section {
+    display: block;
+}
+* {
+    box-sizing: border-box;
+}
