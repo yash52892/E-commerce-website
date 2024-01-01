@@ -1,61 +1,50 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import './App.css';
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from './components/Home';
+import Product from './components/Product';
+import Root from './Root';
+import CartProvider from './Store/CartProvide';
+import About from './components/About';
+import Contact from './components/Contact';
 
-import MoviesList from "./components/MoviesList";
-import "./App.css";
-
-function App() {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
- 
-  
-
-  const fetchmoviesHandler= async ()=>{
-    setIsLoading(true);
-    setError(null);
+const App=(props)=>{
+  const handlerproShow=()=>{
+    props.onnavShow();
+  }
+  const handle=async (obj)=>{
     try {
-      let response = await fetch("https://swapi.dev/api/films");
-      if (!response.ok) {
-        throw new Error("Something went wrong... Retrying");
+      const res=await fetch('https://ecommerce-5629f-default-rtdb.firebaseio.com/feedback.json', {
+      method: 'POST',
+      body: JSON.stringify(obj),
+      headers:{
+        'Content-Type': 'application/json'
       }
-      const data = await response.json();
-      const newMovies = data.results.map((item) => {
-        return {
-          id: item.episode_id,
-          title: item.title,
-          releaseDate: item.release_date,
-          openingText: item.opening_crawl,
-        };
-      });
-      setMovies(newMovies);
-      setIsLoading(false);
+    });
+    const data=await res.json();
+    console.log(data); 
     } catch (error) {
-      setError(error);
-      setIsLoading(false);
+      console.log(error);
     }
   }
-  useEffect(()=>{
-        fetchmoviesHandler();
-      },[]);
+  
+  const route=createBrowserRouter(
+    [{path: '/', 
+      element: <Root/>, 
+      children:[
+        {path: '/', element: <Home/>},
+        {path: '/product', element: <Product onProShow={handlerproShow}/>},
+        {path: '/about', element: <About/>},
+        {path: '/contact', element:<Contact handleContact={handle}/>}
+    ]}]
+    );
 
   return (
-    <React.Fragment>
-      <section>
-        <button onClick={fetchmoviesHandler}>Fetch Movies</button>
-      </section>
-      <section className="section">
-        {isLoading && !error && <section className="loader"></section>}
-        {!error && <MoviesList movies={movies} />}
-        {error && <p>{error.message}</p>}
-        {/* {isLoading && !error && (
-          <button className="button" onClick={()=>{setStop(true)}}>
-            Cancel
-          </button>
-        )} */}
-      </section>
-    </React.Fragment>
+    <CartProvider>
+      <RouterProvider router={route}/>
+      </CartProvider>
   );
+  
 }
 
 export default App;
