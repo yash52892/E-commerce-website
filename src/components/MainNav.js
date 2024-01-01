@@ -20,6 +20,7 @@ const MainNav = (props) => {
             <Link to="/home">Home</Link>
             <Link to="/product">Product</Link>
             <Link to="/about">About</Link>
+      <Link to="/contact">Contact Us</Link>
             <button variant="dark" onClick={props.onnavShow}>
               Cart
               <Badge>{cart.items.length}</Badge>
