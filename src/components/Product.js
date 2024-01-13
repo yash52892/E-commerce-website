@@ -1,4 +1,5 @@
 import Items from './Items';
+import { Button } from 'react-bootstrap';
 
 const Product=()=>{
     const productsArr = [
@@ -23,6 +24,9 @@ const Product=()=>{
         imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
         }
         ]
-    return <Items items={productsArr} />
+    return  (<>
+    <Items items={productsArr} />
+    <Button variant="outline-secondary" style={{ marginLeft: "435px" }} onClick={()=>{props.onProShow()}}>See the Cart</Button>
+    </>)
 }
 export default Product;
